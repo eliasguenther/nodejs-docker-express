@@ -7,3 +7,17 @@ services:
       - '3000:3000'
     volumes:
       - .:/app
+    depends_on:
+      - db
+
+  db:
+    platform: linux/x86_64
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=asndasbd78agdz73i41341b4kb3
+      - MYSQL_ROOTUSER=root
+      - MYSQL_DATABASE=test_db
+      - MYSQL_USER=elias
+      - MYSQL_PASSWORD=secret
+    ports:
+      - 3306:3306
