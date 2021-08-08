@@ -1,3 +1,5 @@
+//Nodejs app with mysql2
+
 const express = require('express');
 const mysql = require('mysql2');
 
