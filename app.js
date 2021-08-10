@@ -1,7 +1,7 @@
 //Nodejs app with mysql2
 
 const express = require('express');
-const mysql = require('mysql2');
+const db = require('./modules/db');
 
 const app = express();
 
@@ -9,20 +9,16 @@ app.get('/', (req, res) => {
 	res.send('Hello World! <a href="/connect">Connect</a>');
 });
 
-const db = mysql.createConnection({
-	host: 'db',
-	user: 'elias',
-	password: 'secret',
-	database: 'test_db',
-});
 app.get('/connect', (req, res) => {
-	db.connect(function (err) {
+	const sql = db();
+
+	sql.connect(function (err) {
 		if (err) {
 			console.error('error connecting: ' + err.stack);
 			return;
 		}
 
-		res.send('connected as id ' + db.threadId);
+		res.send('id as ' + sql.threadId);
 	});
 });
 
